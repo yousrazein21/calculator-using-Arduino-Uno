@@ -1,52 +1,52 @@
-# Librería Arduino I2CScanner
-La librería I2CScanner implementa un escaner para localizar dispositivos I2C, y determinar si un dispositivo está conectado.
+# Libreraies to include in Arduino I2CScanner
+The I2CScanner library implements a scanner to locate I2C devices, and determine if a device is connected.ado.
 
-Más información https://www.luisllamas.es/libreria-arduino-i2cscanner/
+More information https://www.luisllamas.es/libreria-arduino-i2cscanner/
 
-## Instrucciones de uso
-La librería I2CScanner se instancia a través de su constructor. El objeto contiene como variables el rango de direcciones para el escaneo 'Low_Address y 'High_Address. El objeto se inicializa a traves del método 'Init().
+## Instructions for use
+The I2CScanner library is instantiated through its constructor. The object contains as variables the range of addresses for scanning 'Low_Address and 'High_Address. The object is initialized through the 'Init() method.
 
-Se dispone de tres familias de métodos. Los métodos 'Scan funcionan de forma al Sketch tradicional I2CScanner, mostrando los resultados por la pantalla. Los métodos 'Check comprueban la existencia de los dispositivos, pero no muestran ninguna salida. Finalmente, las funciones Execute reciben una función de Callback como parámetro, y la ejecutan únicamente si el dispositivo está conectado.
+Three families of methods are available. The 'Scan' methods work like the traditional I2CScanner Sketch, displaying the results on the screen. The 'Check methods check for the existence of devices, but do not display any output. Finally, the Execute functions receive a Callback function as a parameter, and execute it only if the device is connected.
 
-Las tres familias de funciones tienen sobrecargas. Si no reciben ningún parámetro, actúan sobre el rango definido por 'Low_Address y 'High_Address. Si reciben una dirección, actúan sobre la misma. Si reciben un vector de direcciones actúan sobre las mismas.
+All three families of functions have overloads. If they don't receive any parameters, they act on the range defined by 'Low_Address and 'High_Address. If they receive an address, they act on it. If they receive a vector of directions they act on the same.
 
-### Constructor
+### Builder
 ```c++
 I2CScanner();
 ```
 
-### Uso de I2CScanner
+### Using I2CScanner
 ```c++
-	// Dispositivos encontrados en el último scanner
-	uint8_t Devices_Count;
+	// Devices found in the last scanner
+uint8_t Devices_Count
 	
-	// Rango para el scanner sin parámetros
-	uint8_t Low_Address = 1;
-	uint8_t High_Address = 127;
+	// Range for the scanner without parameters
+uint8_t Low_Address = 1;
+uint8_t High_Address = 127;
 	
-	// Inicialización
+	// initialization
 	void Init();
 
-	// Funciones scanner, muestran resultado por serial
+	// Scanner functions, show result by serial
 	bool Scan();
 	bool Scan(byte address);
 	bool Scan(byte addreses[], uint8_t length);
 
-	// Funciones check, no muestran resultado por serial
+	// Check functions, do not show result by serial
 	bool Check();
 	bool Check(byte address);
 	bool Check(byte addreses[], uint8_t length);
 
-	// Funciones execute, ejecutan la funcion callback si el dispositivo existe
+	//execute functions, execute the callback function if the device exists
 	void Execute(I2C_Callback callback);
 	void Execute(byte address, I2C_Callback callback);
 	void Execute(byte addreses[], uint8_t length, I2C_Callback callback);
 ```
 
-## Ejemplos
-La librería I2CScanner incluye los siguientes ejemplos para ilustrar su uso.
+## examples
+he I2CScanner library includes the following examples to illustrate its use.
 
-* Scanner: Ejemplo que muestra el uso de I2CScanner mostrando resultados por Serial.
+* Scanner: Example that shows the use of I2CScanner showing results by Serial.
 ```c++
  #include "I2CScanner.h"
 
@@ -67,7 +67,7 @@ void loop()
 }
 ```
 
-* Check: Ejemplo que muestra el uso de I2CScanner, almacenando los resultados de check en un array, que luego usariamos en el código.
+* Check: Example that shows the use of I2CScanner, storing the check results in an array, which we would then use in the code.
 ```c++
 #include "I2CScanner.h"
 
@@ -107,7 +107,7 @@ void loop()
 }
 ```
 
-* Execute: Ejemplo que muestra el uso de I2CScanner ejecutando funciones callback.
+* Execute: Example showing the use of I2CScanner executing callback functions.
 ```c++
 #include "I2CScanner.h"
 
